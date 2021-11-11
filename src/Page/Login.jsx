@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-
-const BASE_URL = "http://localhost:3000";
+import styled from "styled-components";
+import BASE_URL from "../Util/Tools.js";
+import Page from "../Util/Preset.js";
 
 class Login extends React.Component{
     constructor(props){
         super(props);
         this.state = {content: "Hello"}
-
     }
     componentDidMount(){
         axios({
@@ -27,9 +27,9 @@ class Login extends React.Component{
     }
     render(){
         return(
-            <div>
-                {this.state.content}
-            </div>
+            <Page>
+                
+            </Page>
         )
     }
 }
