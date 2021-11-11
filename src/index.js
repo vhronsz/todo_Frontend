@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Login from "./Page/Login.jsx";
+import {useRoutes} from "hookrouter";
+
+const route = {
+  "/" : ()=> <Login/>
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {useRoutes(route)}
   </React.StrictMode>,
   document.getElementById('root')
 );
