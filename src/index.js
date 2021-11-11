@@ -4,16 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from "./Page/Login.jsx";
+import Dump from "./Page/Dump.jsx";
 import {useRoutes} from "hookrouter";
 
 const route = {
-  "/" : ()=> <Login/>
+  "/" : ()=> <Login/>,
+  "/dump" : ()=> <Dump/>
+}
+
+function Router(){
+  const router = useRoutes(route);
+  return router;
 }
 
 
 ReactDOM.render(
   <React.StrictMode>
-    {useRoutes(route)}
+    <Router/>
   </React.StrictMode>,
   document.getElementById('root')
 );
