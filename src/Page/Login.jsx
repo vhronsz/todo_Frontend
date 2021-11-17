@@ -1,16 +1,17 @@
 import axios from "axios";
+import react from "react";
 import React from "react";
 import styled from "styled-components";
 import Page from "../Util/Preset.js";
-import BASE_URL from "../Util/Tools.js";
+import BASE_API_URL from "../Util/Tools.js";
 
 const LoginForm = styled.form`
     font-size:1em;
     position: relative;
-    top:20%;
+    top:25%;
     width:45%;
     height:50%;
-    margin-left:30%;
+    margin-left:26.5%;
 
     display:flex;
     flex-direction: column;
@@ -62,7 +63,7 @@ const SubmitButton = styled.button`
     height:60%;
     width:70%;
 
-    margin-left: 15%;
+    margin-left: 15.5%;
     margin-right: 15%;
     margin-top : 2%;
     border:2px solid #7bb0ed;
@@ -100,8 +101,7 @@ class Login extends React.Component{
         e.preventDefault();
         const username = this.state.username;
         const password = this.state.password;
-        let URL = `${BASE_URL}login`; 
-        console.log(URL);
+        let URL = `${BASE_API_URL}login`; 
         axios({
             method: 'POST',
             url: URL,
@@ -111,7 +111,11 @@ class Login extends React.Component{
             }
         })
         .then((res)=>{
-            console.log(res)        
+            let respond = res.data;
+            if(respond.status){
+                window.sessionStorage.setItem("username","Placholder");
+                // window.location = 
+            }
         })
         .catch((e)=>{
             console.log(e);
