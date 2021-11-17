@@ -1,9 +1,8 @@
 import axios from "axios";
-import react from "react";
 import React from "react";
 import styled from "styled-components";
 import Page from "../Util/Preset.js";
-import BASE_API_URL from "../Util/Tools.js";
+import * as URL from "../Util/Tools.js";
 
 const LoginForm = styled.form`
     font-size:1em;
@@ -101,10 +100,10 @@ class Login extends React.Component{
         e.preventDefault();
         const username = this.state.username;
         const password = this.state.password;
-        let URL = `${BASE_API_URL}login`; 
+        let link = `${URL.BASE_API_URL}login`; 
         axios({
             method: 'POST',
-            url: URL,
+            url: link,
             data: {
               username: username,
               password: password 
@@ -112,9 +111,11 @@ class Login extends React.Component{
         })
         .then((res)=>{
             let respond = res.data;
+            // alert(BASE_URL);
             if(respond.status){
+                let redirect = `${URL.BASE_URL}todo`;
                 window.sessionStorage.setItem("username","Placholder");
-                // window.location = 
+                window.location.href = redirect; 
             }
         })
         .catch((e)=>{

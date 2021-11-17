@@ -5,10 +5,8 @@ import {useRoutes} from "hookrouter";
 
 const route = {
     "/" : ()=> <Login/>,
-    
     "/dump" : ()=> <Dump/>,
-
-    "/Todo" : ()=> <Todo/>
+    "/todo" : ()=> <Todo/>
 }
 
 function Router(){
