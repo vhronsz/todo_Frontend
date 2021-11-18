@@ -6,32 +6,19 @@ import styled from "styled-components";
 import BASE_URL from "../Util/Tools.js";
 import SideMenu from "../Container/SideMenu.jsx";
 
-const Item = styled.div`
-    width:17%;
-    height:15%;
-    border:1px solid black;
-    background-color:
-`;
-
-const ItemContainer = styled.div`
-    
-`;
-
-const CheckItem = styled.div`
-    width:97%;
-    heigth:5%;
-    border :1px solid black;
-`;
 class Todo extends react.Component{
     constructor(props){
         super(props);
-
+        this.state = {
+            name:"Placeholder",
+            activity : [],
+            menu : []
+        };
     }
     render(){
         return(
             <Page>
-                <SideMenu item='a'/>
-                
+                <SideMenu name={this.state.name} menu={this.state.menu}/>                
             </Page>
         );
     }
