@@ -5,12 +5,7 @@ import Page from "../Util/Preset.js";
 import styled from "styled-components";
 import BASE_URL from "../Util/Tools.js";
 import SideMenu from "../Container/SideMenu.jsx";
-
-const TodoContent = styled.div`
-    width:85%;
-    height:100%;
-
-`;
+import Main from "../Container/Main.jsx";
 
 class Todo extends react.Component{
     constructor(props){
@@ -32,7 +27,7 @@ class Todo extends react.Component{
         return(
             <Page>
                 <SideMenu name={this.state.name} menu={this.state.menu}/>      
-                          
+                <Main/>
             </Page>
         );
     }

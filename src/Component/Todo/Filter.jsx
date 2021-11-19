@@ -38,7 +38,7 @@ const Filter = (props)=>{
             <MenuTitle>Filter</MenuTitle>
             {props.menu.map((item)=>{
                 return(
-                    <MenuItem id={item.id} onClick={()=>props.action(item.name)}>{item.name}</MenuItem>
+                    <MenuItem key={item.id} onClick={()=>props.action(item.name)}>{item.name}</MenuItem>
                 );
             })}
         </Container>    
