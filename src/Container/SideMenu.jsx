@@ -29,20 +29,15 @@ const UserName = styled.div`
 class SideMenu extends React.Component{
     constructor(props){
         super(props);
-        this.onClick = this.onClick.bind(this);
     }
     
-    onClick = (name)=>{
-        console.log(name);
-    }
-
     render(){
         return(
             <Container>
                 <UserName>
                     Hi, {this.props.name}
                 </UserName>
-                <Filter menu={this.props.menu} action={this.onClick}/>
+                <Filter menu={this.props.menu}/>
             </Container>
         );
     }

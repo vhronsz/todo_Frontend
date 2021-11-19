@@ -32,13 +32,16 @@ const MenuItem = styled.div`
     }
 `;
 
+const onClick = (name)=>{
+    console.log(name);
+}
 const Filter = (props)=>{
     return(
         <Container>
             <MenuTitle>Filter</MenuTitle>
             {props.menu.map((item)=>{
                 return(
-                    <MenuItem key={item.id} onClick={()=>props.action(item.name)}>{item.name}</MenuItem>
+                    <MenuItem key={item.id} onClick={()=>onClick(item.name)}>{item.name}</MenuItem>
                 );
             })}
         </Container>    

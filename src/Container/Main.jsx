@@ -6,7 +6,17 @@ import BASE_URL from "../Util/Tools.js";
 const Container = styled.div`
     width:100%;
     height:100%;
-    background-color : #FFFFF1;
+    background-color : #FFFFFF;
+`;
+
+const Section = styled.div`
+    width:28%;
+    margin-left:1%;
+    margin-top:1%;
+    margin-bottom:2%;
+    height:95%;
+    border 1px solid #bababa;
+    border-radius:10px;
 `;
 
 class Main extends React.Component{
@@ -17,7 +27,9 @@ class Main extends React.Component{
     render(){
         return(
             <Container>
-                asd
+                <Section>
+                    
+                </Section>
             </Container>
         );
     }
