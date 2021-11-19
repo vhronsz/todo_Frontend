@@ -12,6 +12,7 @@ const Container = styled.div`
     flex-direction:column;
     border-right:1px solid #bababa;
     color:#545454;
+    position:relative;
 `;
 
 const UserName = styled.div`
@@ -28,15 +29,20 @@ const UserName = styled.div`
 class SideMenu extends React.Component{
     constructor(props){
         super(props);
-
+        this.onClick = this.onClick.bind(this);
     }
+    
+    onClick = (name)=>{
+        console.log(name);
+    }
+
     render(){
         return(
             <Container>
                 <UserName>
                     Hi, {this.props.name}
                 </UserName>
-                <Filter/>
+                <Filter menu={this.props.menu} action={this.onClick}/>
             </Container>
         );
     }

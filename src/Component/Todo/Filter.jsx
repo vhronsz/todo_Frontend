@@ -3,12 +3,14 @@ import styled from "styled-components";
 
 const Container = styled.div`
     width:100%;
-    height:50%;
+    height:30%;
+    position:absolute;
+    bottom : 0;
 `;
 
 const MenuTitle = styled.div`
     width:100%;
-    height:30%;
+    height:15%;
     font-size:1em;
     display:flex;
     justify-content:center;
@@ -18,7 +20,7 @@ const MenuTitle = styled.div`
 
 const MenuItem = styled.div`
     width:100%;
-    min-height:45%;
+    min-height:20%;
     font-size:1em;
     display:flex;
     justify-content:center;
@@ -30,12 +32,15 @@ const MenuItem = styled.div`
     }
 `;
 
-const Filter = ()=>{
+const Filter = (props)=>{
     return(
         <Container>
             <MenuTitle>Filter</MenuTitle>
-            <MenuItem>A</MenuItem>
-            <MenuItem>A</MenuItem>
+            {props.menu.map((item)=>{
+                return(
+                    <MenuItem id={item.id} onClick={()=>props.action(item.name)}>{item.name}</MenuItem>
+                );
+            })}
         </Container>    
     )
 }
