@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 import BASE_URL from "../Util/Tools.js";
+import Item from "../Component/Todo/Item.jsx";
 
 const Container = styled.div`
     width:100%;
@@ -19,6 +20,10 @@ const Section = styled.div`
     border-radius:10px;
 `;
 
+const Empty = styled.div`
+    width 100%;
+    height:2%;
+`;
 class Main extends React.Component{
     constructor(props){
         super(props);
@@ -27,8 +32,10 @@ class Main extends React.Component{
     render(){
         return(
             <Container>
-                <Section>
-                    
+                <Section>  
+                    <Empty/> 
+                    <Item/>
+                    <Empty/>
                 </Section>
             </Container>
         );
