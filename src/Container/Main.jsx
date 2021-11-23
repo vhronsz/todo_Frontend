@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import BASE_URL from "../Util/Tools.js";
 import Item from "../Component/Todo/Item.jsx";
-import InputItem from "../Component/Todo/InputItem.jsx";
+import InputTask from "../Component/Todo/InputTask.jsx";
 
 const Container = styled.div`
     width:100%;
@@ -37,13 +37,7 @@ class Main extends React.Component{
             <Container>
                 <Section>
                     <Empty/> 
-                    <form>
-                        <input type="text"/>
-                        <InputItem/>        
-                    </form>  
-                    <Item/>
-                    <Item/>
-                    <Item/>
+                    <InputTask/>
                     <Item/>
                     <Item/>
                     <Empty/>
