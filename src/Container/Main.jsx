@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import BASE_URL from "../Util/Tools.js";
 import Item from "../Component/Todo/Item.jsx";
+import InputItem from "../Component/Todo/InputItem.jsx";
 
 const Container = styled.div`
     width:100%;
@@ -16,14 +17,16 @@ const Section = styled.div`
     margin-top:1%;
     margin-bottom:2%;
     height:95%;
-    border 1px solid #bababa;
+    border 1px solid #f2f2f2;
     border-radius:10px;
+    background-color : #f2f2f2;
 `;
 
 const Empty = styled.div`
     width 100%;
     height:2%;
 `;
+
 class Main extends React.Component{
     constructor(props){
         super(props);
@@ -32,8 +35,16 @@ class Main extends React.Component{
     render(){
         return(
             <Container>
-                <Section>  
+                <Section>
                     <Empty/> 
+                    <form>
+                        <input type="text"/>
+                        <InputItem/>        
+                    </form>  
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
                     <Item/>
                     <Empty/>
                 </Section>

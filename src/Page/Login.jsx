@@ -9,7 +9,7 @@ const LoginForm = styled.form`
     position: relative;
     top:25%;
     width:45%;
-    height:50%;
+    height:70%;
     margin-left:26.5%;
 
     display:flex;
@@ -26,7 +26,7 @@ const LoginForm = styled.form`
 const FormComponent = styled.div
 `
     width:80%;
-    height:17%;
+    height:25%;
 `;
 
 const Title = styled.div`
@@ -43,6 +43,7 @@ const InputLabel = styled.label`
     width:70%;
     margin-left: 15%;
     margin-right: 15%;
+    border:1px solid black;
 `;
 
 const FormInput = styled.input

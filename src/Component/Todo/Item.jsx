@@ -4,29 +4,37 @@ import styled from "styled-components";
 import BASE_URL from "../../Util/Tools.js";
 
 const Container = styled.div`
-    width:94%;
-    height:5%;
-    margin-left:2.5%;
-    margin-right:2.5%;
-    border:1px solid black;
+    width:100%;
+    height:7%;
+    border-bottom:1px solid #bababa;
+    background-color:#ffffff;
     display:flex;
     font-size:0.88em;
+    margin-top:5px;
+    margin-bottom:5px;
 `;
 
 const Name = styled.div`
-    width:70%;
+    width:80%;
     height:100%;
     display:flex;
-    align-items:center;
-    border:1px solid black;
-    `;
-
-const Action = styled.div`
-    width:15%;
-    height:100%;
-    display:flex;
+    margin-left:2%;
     align-items:center;
 `;
+
+const Action = styled.div`
+    width:20%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items : center;
+
+    &:hover{
+        color:white;
+        cursor:pointer;
+    }
+`;
+
 class Item extends React.Component{
     constructor(props){
         super(props);
@@ -34,8 +42,7 @@ class Item extends React.Component{
     render(){
         return(
             <Container>
-                <Name>a</Name>
-                <Action>a</Action>
+                <Name>Testing Action</Name>
                 <Action>a</Action>
             </Container>
         );
