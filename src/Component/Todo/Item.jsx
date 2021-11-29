@@ -5,7 +5,7 @@ import BASE_URL from "../../Util/Tools.js";
 
 const Container = styled.div`
     width:94%;
-    height:7%;
+    height:9%;
     border-bottom:1px solid #bababa;
     background-color:#ffffff;
     display:flex;

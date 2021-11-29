@@ -18,11 +18,32 @@ const Section = styled.div`
     border 1px solid #f2f2f2;
     border-radius:10px;
     background-color : #f2f2f2;
+    
 `;
 
 const Empty = styled.div`
-    width 100%;
+    width : 100%;
     height:2%;
+`;
+
+const ItemContainer = styled.div`
+    width:100%;
+    height:88%;
+    overflow-y:scroll;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: auto;
+        background : #f2f2f2; 
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: #cccccc;
+    }
+    &::-webkit-scrollbar-track {}
+    &::-webkit-scrollbar-thumb:hover {
+        background: #bbbbbb;
+    }
 `;
 
 class Main extends React.Component{
@@ -62,11 +83,13 @@ class Main extends React.Component{
                 <Section>
                     <Empty/> 
                     <InputTask addItem = {this.addItem}/>
-                    {this.state.items.map((i)=>{
-                        return(
-                            <Item key={i.id} action={i.action} id={i.id} remove={()=>{this.removeItem(i.id)}}/>
-                        );
-                    })}
+                    <ItemContainer>
+                        {this.state.items.map((i)=>{
+                            return(
+                                <Item key={i.id} action={i.action} id={i.id} remove={()=>{this.removeItem(i.id)}}/>
+                            );
+                        })}
+                    </ItemContainer>
                     <Empty/>
                 </Section>
             </Container>
