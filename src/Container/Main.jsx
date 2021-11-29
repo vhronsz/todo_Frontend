@@ -7,6 +7,7 @@ const Container = styled.div`
     width:100%;
     height:100%;
     background-color : #FFFFFF;
+    display:flex;
 `;
 
 const Section = styled.div`
@@ -18,7 +19,6 @@ const Section = styled.div`
     border 1px solid #f2f2f2;
     border-radius:10px;
     background-color : #f2f2f2;
-    
 `;
 
 const Empty = styled.div`
@@ -80,6 +80,18 @@ class Main extends React.Component{
     render(){
         return(
             <Container>
+                <Section>
+                    <Empty/> 
+                    <InputTask addItem = {this.addItem}/>
+                    <ItemContainer>
+                        {this.state.items.map((i)=>{
+                            return(
+                                <Item key={i.id} action={i.action} id={i.id} remove={()=>{this.removeItem(i.id)}}/>
+                            );
+                        })}
+                    </ItemContainer>
+                    <Empty/>
+                </Section>
                 <Section>
                     <Empty/> 
                     <InputTask addItem = {this.addItem}/>
