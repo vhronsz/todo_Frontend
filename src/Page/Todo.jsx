@@ -1,9 +1,6 @@
-import axios from "axios";
 import react from "react";
 import React from "react";
 import Page from "../Util/Preset.js";
-import styled from "styled-components";
-import BASE_URL from "../Util/Tools.js";
 import SideMenu from "../Container/SideMenu.jsx";
 import Main from "../Container/Main.jsx";
 

@@ -1,7 +1,6 @@
-import axios from "axios";
+
 import React from "react";
 import styled from "styled-components";
-import BASE_URL from "../Util/Tools.js";
 import Filter from "../Component/Todo/Filter.jsx";
 
 const Container = styled.div`
@@ -26,21 +25,32 @@ const UserName = styled.div`
     justify-content:center;
 `;
 
-class SideMenu extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    
-    render(){
-        return(
-            <Container>
+const SideMenu = (props)=>{
+
+    return(
+        <Container>
                 <UserName>
-                    Hi, {this.props.name}
+                    Hi, {props.name}
                 </UserName>
-                <Filter menu={this.props.menu}/>
+                <Filter menu={props.menu}/>
             </Container>
-        );
-    }
+    );
 }
+// class SideMenu extends React.Component{
+//     constructor(props){
+//         super(props);
+//     }
+    
+//     render(){
+//         return(
+//             <Container>
+//                 <UserName>
+//                     Hi, {this.props.name}
+//                 </UserName>
+//                 <Filter menu={this.props.menu}/>
+//             </Container>
+//         );
+//     }
+// }
 
 export default SideMenu;
