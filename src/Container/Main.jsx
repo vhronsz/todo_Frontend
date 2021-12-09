@@ -21,6 +21,10 @@ const Section = styled.div`
     background-color : #f2f2f2;
 `;
 
+const SectionTitle = styled.div`
+
+`;
+
 const Empty = styled.div`
     width : 100%;
     height:2%;
@@ -50,60 +54,70 @@ class Main extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            "items" :[
-                {"id":1,"action" :"testing"},
-                {"id":2,"action" :"Action 2"}
-            ],
+            sections : [
+                [
+                    {
+                        "action_name": "action 2",
+                        "action_id": 3,
+                        "section_id": 1,
+                        "section_name": "testing"
+                    },
+                    {
+                        "action_name": "action_name",
+                        "action_id": 1,
+                        "section_id": 1,
+                        "section_name": "testing"
+                    },
+                    {
+                        "action_name": "action 1",
+                        "action_id": 2,
+                        "section_id": 1,
+                        "section_name": "testing"
+                    },
+                    {
+                        "action_name": "action 4",
+                        "action_id": 5,
+                        "section_id": 1,
+                        "section_name": "testing"
+                    }
+                ],
+                [
+                    {
+                        "action_name": "action 3",
+                        "action_id": 4,
+                        "section_id": 2,
+                        "section_name": "section 2"
+                    }
+                ]
+            ]
         }
     }
 
-    addItem = (item)=>{
-        let items = this.state.items;
-        items = [...items,item];
-        this.setState({
-            "items":items
-        })
-        // Success Message
-    }
-
     removeItem = (id)=>{
-        let items = this.state.items;
-        let newItems = items.filter((item)=>{
-            return item.id !== id;
-        })
-        this.setState({
-            "items" : newItems
-        });
         // Success Message
 
     }
+
     render(){
         return(
             <Container>
-                <Section>
-                    <Empty/> 
-                    <InputTask addItem = {this.addItem}/>
-                    <ItemContainer>
-                        {this.state.items.map((i)=>{
-                            return(
-                                <Item key={i.id} action={i.action} id={i.id} remove={()=>{this.removeItem(i.id)}}/>
-                            );
-                        })}
-                    </ItemContainer>
-                    <Empty/>
-                </Section>
-                <Section>
-                    <Empty/> 
-                    <InputTask addItem = {this.addItem}/>
-                    <ItemContainer>
-                        {this.state.items.map((i)=>{
-                            return(
-                                <Item key={i.id} action={i.action} id={i.id} remove={()=>{this.removeItem(i.id)}}/>
-                            );
-                        })}
-                    </ItemContainer>
-                    <Empty/>
-                </Section>
+                {this.state.sections.map((section)=>
+                    <Section>
+                        <SectionTitle>
+                            {section[0].name}
+                        </SectionTitle>
+                        <Empty/> 
+                        <InputTask id={section[0].section_id} addItem = {this.addItem}/>
+                        <ItemContainer>
+                            {section.map((item)=>{
+                                return(
+                                    <Item key={item.action_id} action={item.action_name} id={item.action_id} remove={()=>{this.removeItem(item.action_id)}}/>
+                                );
+                            })}
+                        </ItemContainer>
+                        <Empty/>
+                    </Section>                        
+                )}
             </Container>
         );
     }

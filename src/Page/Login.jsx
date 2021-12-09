@@ -7,7 +7,7 @@ import * as URL from "../Util/Tools.js";
 const LoginForm = styled.form`
     font-size:1em;
     position: relative;
-    top:25%;
+    top:20%;
     width:45%;
     height:70%;
     margin-left:26.5%;
@@ -43,7 +43,6 @@ const InputLabel = styled.label`
     width:70%;
     margin-left: 15%;
     margin-right: 15%;
-    border:1px solid black;
 `;
 
 const FormInput = styled.input
@@ -97,10 +96,21 @@ class Login extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
+
+    showError = (text)=>{
+        this.setState({
+            error : text
+        });
+    }
+
     handleSubmit = (e)=>{
         e.preventDefault();
         const username = this.state.username;
         const password = this.state.password;
+        if(username.length === 0 || password.length === 0){
+            this.showError("Username or Password cannot be empty");
+            return;
+        }
         let link = `${URL.BASE_API_URL}login`; 
         axios({
             method: 'POST',
@@ -112,12 +122,14 @@ class Login extends React.Component{
         })
         .then((res)=>{
             let respond = res.data;
-            // alert(BASE_URL);
-            if(respond.status){
-                let redirect = `${URL.BASE_URL}todo`;
-                window.sessionStorage.setItem("username","Placholder");
-                window.location.href = redirect; 
+            if(!respond.status){
+                this.showError(respond.message);
+                return;
             }
+
+            let redirect = `${URL.BASE_URL}todo`;
+            window.sessionStorage.setItem("username","Placholder");
+            window.location.href = redirect; 
         })
         .catch((e)=>{
             console.log(e);
