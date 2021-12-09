@@ -57,28 +57,32 @@ class Main extends React.Component{
             sections : [
                 [
                     {
-                        "action_name": "action 2",
-                        "action_id": 3,
+                        "action_name": "action 1",
+                        "action_id": 2,
                         "section_id": 1,
-                        "section_name": "testing"
+                        "section_name": "testing",
+                        "status": "added"
                     },
                     {
                         "action_name": "action_name",
                         "action_id": 1,
                         "section_id": 1,
-                        "section_name": "testing"
+                        "section_name": "testing",
+                        "status": "added"
                     },
                     {
-                        "action_name": "action 1",
-                        "action_id": 2,
+                        "action_name": "action 2",
+                        "action_id": 3,
                         "section_id": 1,
-                        "section_name": "testing"
+                        "section_name": "testing",
+                        "status": "added"
                     },
                     {
                         "action_name": "action 4",
                         "action_id": 5,
                         "section_id": 1,
-                        "section_name": "testing"
+                        "section_name": "testing",
+                        "status": "added"
                     }
                 ],
                 [
@@ -86,16 +90,27 @@ class Main extends React.Component{
                         "action_name": "action 3",
                         "action_id": 4,
                         "section_id": 2,
-                        "section_name": "section 2"
+                        "section_name": "section 2",
+                        "status": "added"
                     }
                 ]
             ]
         }
     }
 
-    removeItem = (id)=>{
-        // Success Message
+    removeItem = (item_id,section_id)=>{
 
+        let new_sections = this.state.sections;
+
+        let filtered_sections = new_sections.map((section)=>{
+            return section.filter((item)=>{
+                return item.section_id !== section_id || item.action_id !== item_id
+            });
+        });
+        
+        this.setState({
+            sections : filtered_sections
+        });
     }
 
     render(){
@@ -111,7 +126,9 @@ class Main extends React.Component{
                         <ItemContainer>
                             {section.map((item)=>{
                                 return(
-                                    <Item key={item.action_id} action={item.action_name} id={item.action_id} remove={()=>{this.removeItem(item.action_id)}}/>
+                                    <Item key={item.action_id} action={item.action_name} 
+                                          id={item.action_id} 
+                                          remove={()=>{this.removeItem(item.action_id,item.section_id)}}/>
                                 );
                             })}
                         </ItemContainer>
