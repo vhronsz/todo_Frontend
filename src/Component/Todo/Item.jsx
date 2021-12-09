@@ -42,15 +42,16 @@ class Item extends React.Component{
 
     onClick = (e)=>{
         let URL = `${BASE_URL}item/check`;
-        axios({
-            method:"POST",
-            url:URL,
-            data:{
-                id:this.props.id
-            }
-        }).then(
-            this.props.remove
-        );
+        // axios({
+        //     method:"POST",
+        //     url:URL,
+        //     data:{
+        //         id:this.props.id
+        //     }
+        // }).then(
+        //     this.props.remove
+        // );
+        this.props.remove();
     }
 
     render(){

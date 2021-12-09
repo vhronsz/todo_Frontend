@@ -4,9 +4,9 @@ import Todo from "../Page/Todo.jsx";
 import {useRoutes} from "hookrouter";
 
 const route = {
-    "/" : ()=> <Login/>,
+    "/" : ()=> <Todo/>,
     "/dump" : ()=> <Dump/>,
-    "/todo" : ()=> <Todo/>
+    "/todo" : ()=> <Login/>
 }
 
 function Router(){

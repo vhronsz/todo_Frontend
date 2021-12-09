@@ -98,16 +98,25 @@ class Main extends React.Component{
         }
     }
 
-    removeItem = (item_id,section_id)=>{
+    removeItem = (item_id,section_id,section_name)=>{
+        // Di DB jangan lupa buat querynya where status = added pas ngambil
+        // Tambahin Soft Delete
+        let sections = this.state.sections;
 
-        let new_sections = this.state.sections;
-
-        let filtered_sections = new_sections.map((section)=>{
+        let filtered_sections = sections.map((section)=>{
             return section.filter((item)=>{
                 return item.section_id !== section_id || item.action_id !== item_id
             });
         });
         
+        filtered_sections.forEach((section)=>{
+            if(section.length === 0){
+                section.push({
+                    section_name : section_name,
+                    section_id : section_id
+                });
+            }
+        });
         this.setState({
             sections : filtered_sections
         });
@@ -119,17 +128,19 @@ class Main extends React.Component{
                 {this.state.sections.map((section)=>
                     <Section>
                         <SectionTitle>
-                            {section[0].name}
+                            {section[0].section_name}
                         </SectionTitle>
                         <Empty/> 
                         <InputTask id={section[0].section_id} addItem = {this.addItem}/>
                         <ItemContainer>
                             {section.map((item)=>{
-                                return(
-                                    <Item key={item.action_id} action={item.action_name} 
-                                          id={item.action_id} 
-                                          remove={()=>{this.removeItem(item.action_id,item.section_id)}}/>
-                                );
+                                if(item.action_name){
+                                    return(
+                                        <Item key={item.action_id} action={item.action_name} 
+                                              id={item.action_id} 
+                                              remove={()=>{this.removeItem(item.action_id,item.section_id,item.section_name)}}/>
+                                    );
+                                }
                             })}
                         </ItemContainer>
                         <Empty/>
