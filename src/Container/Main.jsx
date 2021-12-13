@@ -24,7 +24,7 @@ const Section = styled.div`
 `;
 
 const SectionTitle = styled.div`
-
+    text-align:center;
 `;
 
 const Empty = styled.div`
@@ -84,7 +84,6 @@ class Main extends React.Component{
                 sections:res.data.data,
                 loading:false
             });
-            console.log(res.data.data);
         });
     } 
 
@@ -108,6 +107,13 @@ class Main extends React.Component{
 
         this.setState({
             sections : filtered_sections
+        });
+    }
+
+    addItem = ()=>{
+        
+        this.setState({
+
         });
     }
 
