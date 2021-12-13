@@ -29,7 +29,8 @@ const Action = styled.div`
     align-items : center;
 
     &:hover{
-        color:white;
+        background-color: #f2f2f2;
+        color:#909090;
         cursor:pointer;
     }
 `;
@@ -42,23 +43,22 @@ class Item extends React.Component{
 
     onClick = (e)=>{
         let URL = `${BASE_URL}item/check`;
-        // axios({
-        //     method:"POST",
-        //     url:URL,
-        //     data:{
-        //         id:this.props.id
-        //     }
-        // }).then(
-        //     this.props.remove
-        // );
-        this.props.remove();
+        axios({
+            method:"POST",
+            url:URL,
+            data:{
+                id:this.props.id
+            }
+        }).then(
+            this.props.remove
+        );
     }
 
     render(){
         return(
             <Container>
                 <Name>{this.props.action}</Name>
-                <Action onClick={this.onClick}>a</Action>
+                <Action onClick={this.onClick}>v</Action>
             </Container>
         );
     }

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Item from "../Component/Todo/Item.jsx";
 import InputTask from "../Component/Todo/InputTask.jsx";
+import axios from "axios";
+import BASE_API_URL from "../Util/Tools.js";
 
 const Container = styled.div`
     width:100%;
@@ -50,57 +52,42 @@ const ItemContainer = styled.div`
     }
 `;
 
-class Main extends React.Component{
+let all_actions = [];
+
+class Main extends React.Component{   
+
+    fetchData = ()=>{
+        axios({
+            url:`${BASE_API_URL}item`,
+            method:"POST",
+            data : {
+                // Isi pake cookie
+                user:{
+                    id:1
+                }
+            }
+        }).then((res)=>{
+            this.setState({
+                sections:res.data.data,
+                loading:false
+            });
+            console.log(res.data.data);
+        });
+    } 
+
     constructor(props){
         super(props);
         this.state = {
-            sections : [
-                [
-                    {
-                        "action_name": "action 1",
-                        "action_id": 2,
-                        "section_id": 1,
-                        "section_name": "testing",
-                        "status": "added"
-                    },
-                    {
-                        "action_name": "action_name",
-                        "action_id": 1,
-                        "section_id": 1,
-                        "section_name": "testing",
-                        "status": "added"
-                    },
-                    {
-                        "action_name": "action 2",
-                        "action_id": 3,
-                        "section_id": 1,
-                        "section_name": "testing",
-                        "status": "added"
-                    },
-                    {
-                        "action_name": "action 4",
-                        "action_id": 5,
-                        "section_id": 1,
-                        "section_name": "testing",
-                        "status": "added"
-                    }
-                ],
-                [
-                    {
-                        "action_name": "action 3",
-                        "action_id": 4,
-                        "section_id": 2,
-                        "section_name": "section 2",
-                        "status": "added"
-                    }
-                ]
-            ]
+            sections : [],
+            loading : true
         }
     }
 
+    componentDidMount(){
+        this.fetchData();
+    }
+
     removeItem = (item_id,section_id,section_name)=>{
-        // Di DB jangan lupa buat querynya where status = added pas ngambil
-        // Tambahin Soft Delete
         let sections = this.state.sections;
 
         let filtered_sections = sections.map((section)=>{
@@ -123,10 +110,20 @@ class Main extends React.Component{
     }
 
     render(){
+        if(this.state.loading){
+            return(
+                <Container>
+                    <Section></Section>
+                    <Section></Section>
+                    <Section></Section>
+                    <Section></Section>
+                </Container>
+            )
+        }
         return(
             <Container>
                 {this.state.sections.map((section)=>
-                    <Section>
+                    <Section key={section.section_id}>
                         <SectionTitle>
                             {section[0].section_name}
                         </SectionTitle>
