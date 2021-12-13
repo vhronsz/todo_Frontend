@@ -56,6 +56,19 @@ let all_actions = [];
 
 class Main extends React.Component{   
 
+    constructor(props){
+        super(props);
+        this.state = {
+            sections : [],
+            loading : true,
+            filter : "added"
+        }
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
+
     fetchData = ()=>{
         axios({
             url:`${BASE_API_URL}item`,
@@ -75,18 +88,6 @@ class Main extends React.Component{
         });
     } 
 
-    constructor(props){
-        super(props);
-        this.state = {
-            sections : [],
-            loading : true
-        }
-    }
-
-    componentDidMount(){
-        this.fetchData();
-    }
-
     removeItem = (item_id,section_id,section_name)=>{
         let sections = this.state.sections;
 
@@ -104,6 +105,7 @@ class Main extends React.Component{
                 });
             }
         });
+
         this.setState({
             sections : filtered_sections
         });
@@ -130,15 +132,17 @@ class Main extends React.Component{
                         <Empty/> 
                         <InputTask id={section[0].section_id} addItem = {this.addItem}/>
                         <ItemContainer>
-                            {section.map((item)=>{
-                                if(item.action_name){
-                                    return(
-                                        <Item key={item.action_id} action={item.action_name} 
-                                              id={item.action_id} 
-                                              remove={()=>{this.removeItem(item.action_id,item.section_id,item.section_name)}}/>
-                                    );
-                                }
-                            })}
+                            {
+                                section.map((item)=>{
+                                    if(item.action_name && item.status === this.state.filter){
+                                        return(
+                                            <Item key={item.action_id} action={item.action_name} 
+                                                id={item.action_id} 
+                                                remove={()=>{this.removeItem(item.action_id,item.section_id,item.section_name)}}/>
+                                        );
+                                    }
+                                })
+                            }
                         </ItemContainer>
                         <Empty/>
                     </Section>                        
