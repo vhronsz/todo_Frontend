@@ -1,4 +1,4 @@
-const BASE_API_URL = "http://localhost:3001/";
+const BASE_API_URL = "http://localhost:9090/";
 const BASE_URL = "http://localhost:3000/";
 const ERROR_LOGIN_NULL = "";
 export default BASE_API_URL;

@@ -46,7 +46,7 @@ class InputTask extends React.Component{
             method:"POST",
             url:`${BASE_URL}item/add`,
             data:{
-                "action" : this.state.value,
+                "action_name" : this.state.value,
                 "section_id" : this.props.id
             }
         }).then((res)=>{

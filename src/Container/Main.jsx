@@ -111,9 +111,8 @@ class Main extends React.Component{
     }
 
     addItem = ()=>{
-        
         this.setState({
-
+            
         });
     }
 
